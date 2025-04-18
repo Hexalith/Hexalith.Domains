@@ -2,7 +2,5 @@
   <!-- Import the Directory.Package.props file in Hexalith.Builds. -->
   <Import Project="$(MSBuildThisFileDirectory)Hexalith.Builds/Props/Directory.Packages.props" />
   <ItemGroup>
-    <PackageVersion Include="Hexalith.PolymorphicSerializations" Version="1.6.2" />
-    <PackageVersion Include="Hexalith.PolymorphicSerializations.CodeGenerators" Version="1.6.2" />
   </ItemGroup>
 </Project>
