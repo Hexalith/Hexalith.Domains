@@ -14,6 +14,9 @@ using System.Runtime.Serialization;
 /// This record is used to store and retrieve information about an entity
 /// using its identifier and description.
 /// </remarks>
+/// <param name="Id">The unique identifier of the entity.</param>
+/// <param name="Description">The description of the entity.</param>
+/// <param name="Disabled">Indicates whether the entity is disabled.</param>
 [DataContract]
 public record IdDescription(
     [property: DataMember(Order = 1)] string Id,

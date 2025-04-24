@@ -10,6 +10,9 @@ using System.Runtime.Serialization;
 /// <summary>
 /// Represents a dimension value.
 /// </summary>
+/// <param name="Type"> The type of the dimension value.</param>
+/// <param name="Value"> The value of the dimension value.</param>
+/// <param name="Name"> The name of the dimension value.</param>
 [DataContract]
 public record DimensionValue(
     [property:DataMember(Order = 1)]
@@ -17,6 +20,4 @@ public record DimensionValue(
     [property:DataMember(Order = 2)]
     string Value,
     [property:DataMember(Order = 3)]
-    string Name)
-{
-}
+    string Name);

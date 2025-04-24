@@ -42,9 +42,7 @@ public abstract record StateMachine<T>
     /// <param name="from">The source state to get valid transitions for.</param>
     /// <returns>An enumerable collection of valid next states. Returns an empty collection if no transitions are defined for the source state.</returns>
     public IEnumerable<T> GetValidTransitions(T from)
-    {
-        return !ValidTransitions.ContainsKey(from)
+        => !ValidTransitions.TryGetValue(from, out IEnumerable<T>? value)
             ? []
-            : ValidTransitions[from];
-    }
+            : value;
 }

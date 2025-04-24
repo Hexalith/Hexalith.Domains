@@ -15,6 +15,4 @@ using System.Collections.Generic;
 public record ApplySucceededResult(
     IDomainAggregate Aggregate,
     IEnumerable<object> Messages)
-    : ApplyResult(Aggregate, Messages, false)
-{
-}
+    : ApplyResult(Aggregate, Messages, false);

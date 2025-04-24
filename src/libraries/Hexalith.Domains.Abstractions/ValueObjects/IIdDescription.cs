@@ -24,4 +24,9 @@ public interface IIdDescription
     /// Gets the ID of the object.
     /// </summary>
     string Id { get; }
+
+    /// <summary>
+    /// Gets the name of the object.
+    /// </summary>
+    string Search => Id + " " + Description;
 }
