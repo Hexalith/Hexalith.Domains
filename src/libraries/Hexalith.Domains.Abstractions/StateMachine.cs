@@ -26,6 +26,7 @@ public abstract record StateMachine<T>
     /// A dictionary where the key represents the source state and the value is a collection of valid target states.
     /// Each entry defines the allowed transitions from a specific state.
     /// </value>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1721:Property names should not match get methods", Justification = "Not applicable")]
     protected abstract IDictionary<T, IEnumerable<T>> ValidTransitions { get; }
 
     /// <summary>

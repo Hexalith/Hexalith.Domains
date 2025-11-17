@@ -6,6 +6,7 @@
 namespace Hexalith.Domains.Results;
 
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 using Hexalith.Domain.Events;
 using Hexalith.Domains;
@@ -29,7 +30,7 @@ public record ApplyResult(
     /// <param name="aggregate">The domain aggregate.</param>
     /// <returns>An ApplyResult indicating failure due to unimplemented event.</returns>
     public static ApplyResult NotImplemented(IDomainAggregate aggregate)
-        => new(aggregate, [], true, "Event not implemented");
+        => new(ValidateAggregate(aggregate), [], true, "Event not implemented");
 
     /// <summary>
     /// Creates an ApplyResult indicating that the aggregate is not initialized.
@@ -37,7 +38,7 @@ public record ApplyResult(
     /// <param name="aggregate">The domain aggregate.</param>
     /// <returns>An ApplyResult indicating failure due to uninitialized aggregate.</returns>
     public static ApplyResult NotInitialized(IDomainAggregate aggregate)
-        => new(aggregate, [], true, $"Cannot apply changes to an uninitialized manhole element ({aggregate.AggregateName}).");
+        => new(ValidateAggregate(aggregate), [], true, $"Cannot apply changes to an uninitialized manhole element ({aggregate.AggregateName}).");
 
     /// <summary>
     /// Creates an ApplyResult indicating that the aggregate is not enabled.
@@ -45,7 +46,7 @@ public record ApplyResult(
     /// <param name="aggregate">The domain aggregate.</param>
     /// <returns>An ApplyResult indicating failure due to disabled aggregate.</returns>
     public static ApplyResult NotEnabled(IDomainAggregate aggregate)
-        => new(aggregate, [], true, $"Cannot change a disabled manhole element ({aggregate.AggregateName}).");
+        => new(ValidateAggregate(aggregate), [], true, $"Cannot change a disabled manhole element ({aggregate.AggregateName}).");
 
     /// <summary>
     /// Creates an ApplyResult indicating that an invalid event was applied.
@@ -55,7 +56,7 @@ public record ApplyResult(
     /// <returns>An ApplyResult indicating failure due to invalid event.</returns>
     public static ApplyResult InvalidEvent(IDomainAggregate aggregate, object domainEvent)
         => new(
-                aggregate,
+                ValidateAggregate(aggregate),
                 [InvalidEventApplied.CreateNotSupportedAppliedEvent(
                     aggregate.AggregateName,
                     aggregate.AggregateId,
@@ -69,7 +70,7 @@ public record ApplyResult(
     /// <param name="messages">The collection of messages produced during the application of events.</param>
     /// <returns>An ApplyResult indicating success.</returns>
     public static ApplyResult Success(IDomainAggregate aggregate, IEnumerable<object> messages)
-        => new(aggregate, messages, false);
+        => new(ValidateAggregate(aggregate), messages, false);
 
     /// <summary>
     /// Creates an ApplyResult indicating an error during the application of events.
@@ -78,5 +79,11 @@ public record ApplyResult(
     /// <param name="reason">The reason for the error.</param>
     /// <returns>An ApplyResult indicating failure due to an error.</returns>
     public static ApplyResult Error(IDomainAggregate aggregate, string reason)
-        => new(aggregate, [], true, reason);
+        => new(ValidateAggregate(aggregate), [], true, reason);
+
+    private static IDomainAggregate ValidateAggregate([NotNull] IDomainAggregate aggregate)
+    {
+        ArgumentNullException.ThrowIfNull(aggregate);
+        return aggregate;
+    }
 }
