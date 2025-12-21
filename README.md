@@ -26,7 +26,6 @@ This is a template repository for creating new Hexalith packages. The repository
 
 ## Overview
 
-This repository provides a template for creating new Hexalith packages. It includes all the necessary configuration files, directory structure, and GitHub workflow configurations to ensure consistency across Hexalith packages.
 
 ## Repository Structure
 
@@ -45,41 +44,13 @@ The repository is organized as follows:
 ### Prerequisites
 
 - [Hexalith.Builds](https://github.com/Hexalith/Hexalith.Builds)
-- [.NET 8 SDK](https://dotnet.microsoft.com/download) or later
+- [.NET 10 SDK](https://dotnet.microsoft.com/download) or later
 - [PowerShell 7](https://github.com/PowerShell/PowerShell) or later
 - [Git](https://git-scm.com/)
-
-### Initializing the Package
-
-To use this template to create a new Hexalith package:
-
-1. Clone this repository or use it as a template when creating a new repository on GitHub.
-2. Run the initialization script with your desired package name:
-
-```powershell
-./initialize.ps1 -PackageName "YourPackageName"
-```
-
-This script will:
-
-- Replace all occurrences of "Domains" with your package name
-- Replace all occurrences of "Domains" with the lowercase version of your package name
-- Rename directories and files that contain "Domains" in their name
-- Initialize and update Git submodules
-- Set up the project structure for your new package
 
 ### Git Submodules
 
 This template uses the Hexalith.Builds repository as a Git submodule. For information about the build system and configuration, refer to the README files in the Hexalith.Builds directory.
-
-## Development
-
-After initializing your package, you can start developing by:
-
-1. Opening the solution file in your preferred IDE
-2. Adding your implementation to the src/ directory
-3. Writing tests in the test/ directory
-4. Building and testing your package
 
 ## License
 
