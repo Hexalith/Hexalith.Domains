@@ -38,7 +38,7 @@ public record ApplyResult(
     /// <param name="aggregate">The domain aggregate.</param>
     /// <returns>An ApplyResult indicating failure due to uninitialized aggregate.</returns>
     public static ApplyResult NotInitialized(IDomainAggregate aggregate)
-        => new(ValidateAggregate(aggregate), [], true, $"Cannot apply changes to an uninitialized manhole element ({aggregate.AggregateName}).");
+        => new(ValidateAggregate(aggregate), [], true, $"Cannot apply changes to uninitialized entity ({aggregate.DomainName}/{aggregate.DomainId}).");
 
     /// <summary>
     /// Creates an ApplyResult indicating that the aggregate is not enabled.
@@ -46,7 +46,7 @@ public record ApplyResult(
     /// <param name="aggregate">The domain aggregate.</param>
     /// <returns>An ApplyResult indicating failure due to disabled aggregate.</returns>
     public static ApplyResult NotEnabled(IDomainAggregate aggregate)
-        => new(ValidateAggregate(aggregate), [], true, $"Cannot change a disabled manhole element ({aggregate.AggregateName}).");
+        => new(ValidateAggregate(aggregate), [], true, $"Cannot change a disabled entity ({aggregate.DomainName}/{aggregate.DomainId}).");
 
     /// <summary>
     /// Creates an ApplyResult indicating that an invalid event was applied.
@@ -58,8 +58,8 @@ public record ApplyResult(
         => new(
                 ValidateAggregate(aggregate),
                 [InvalidEventApplied.CreateNotSupportedAppliedEvent(
-                    aggregate.AggregateName,
-                    aggregate.AggregateId,
+                    aggregate.DomainName,
+                    aggregate.DomainId,
                     domainEvent)],
                 true);
 

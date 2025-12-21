@@ -32,8 +32,8 @@ public partial record SnapshotEvent(
     /// <exception cref="ArgumentNullException">Thrown when the aggregate is null.</exception>
     public static SnapshotEvent Create(IDomainAggregate aggregate)
         => new(
-            (aggregate ?? throw new ArgumentNullException(nameof(aggregate))).AggregateName,
-            aggregate.AggregateId,
+            (aggregate ?? throw new ArgumentNullException(nameof(aggregate))).DomainName,
+            aggregate.DomainId,
             JsonSerializer.Serialize(aggregate, aggregate.GetType()));
 
     /// <summary>
