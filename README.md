@@ -34,8 +34,6 @@ The repository is organized as follows:
 - [src](./src/README.md) Is the source code directory of your project.
 - [src/libraries](./src/libraries/README.md) Is the source code directory where you will add your Nuget package projects.
 - [src/examples](./src/examples/README.md) Contains example implementations of your projects.
-- [src/servers](./src/servers/README.md) Is the source code directory where you will add your Docker container projects.
-- [src/aspire](./src/aspire/README.md) Is the source code directory where you will add your Aspire project.
 - [test](./test/README.md) Contains test projects for your packages.
 - [Hexalith.Builds](./Hexalith.Builds/README.md) Contains shared build configurations and tools.
 
