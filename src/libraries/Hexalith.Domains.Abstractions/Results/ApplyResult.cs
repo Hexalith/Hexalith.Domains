@@ -30,7 +30,7 @@ public record ApplyResult(
     /// <param name="aggregate">The domain aggregate.</param>
     /// <returns>An ApplyResult indicating failure due to unimplemented event.</returns>
     public static ApplyResult NotImplemented(IDomainAggregate aggregate)
-        => new(ValidateAggregate(aggregate), [], true, "Event not implemented");
+        => new(ValidateAggregate(aggregate), [], true, $"Event not implemented for {aggregate.DomainName}");
 
     /// <summary>
     /// Creates an ApplyResult indicating that the aggregate is not initialized.
