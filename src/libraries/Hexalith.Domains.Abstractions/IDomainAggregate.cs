@@ -16,13 +16,13 @@ public interface IDomainAggregate
     /// Gets the aggregate identifier.
     /// </summary>
     /// <value>The aggregate identifier.</value>
-    string AggregateId { get; }
+    string DomainId { get; }
 
     /// <summary>
     /// Gets the name of the aggregate.
     /// </summary>
     /// <value>The name of the aggregate.</value>
-    string AggregateName { get; }
+    string DomainName { get; }
 
     /// <summary>
     /// Applies the specified domain event.
@@ -35,5 +35,5 @@ public interface IDomainAggregate
     /// Determines whether this instance is initialized.
     /// </summary>
     /// <returns><c>true</c> if this instance is initialized; otherwise, <c>false</c>.</returns>
-    bool IsInitialized() => !string.IsNullOrWhiteSpace(AggregateId);
+    bool IsInitialized() => !string.IsNullOrWhiteSpace(DomainId);
 }
