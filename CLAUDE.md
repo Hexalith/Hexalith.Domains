@@ -1,1 +1,3 @@
-Read /Hexalith.Builds/CLAUDE.md for more information.
+# AI instructions
+
+Read [Hexalith AI instructions](./Hexalith.Builds/CLAUDE.md) for more information.

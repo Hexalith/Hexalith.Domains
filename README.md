@@ -1,6 +1,6 @@
 # Hexalith.Domains
 
-This is a template repository for creating new Hexalith packages. The repository provides a structured starting point for developing new packages within the Hexalith ecosystem.
+**Hexalith.Domains** provides the core Domain Driven Design (DDD) abstractions and implementations for the Hexalith ecosystem. It serves as the foundation for building domain-centric microservices and modules, defining standard interfaces for aggregates, entities, events, and value objects.
 
 ## Build Status
 
@@ -24,18 +24,15 @@ This is a template repository for creating new Hexalith packages. The repository
 [![NuGet](https://img.shields.io/nuget/v/Hexalith.Domains.svg)](https://www.nuget.org/packages/Hexalith.Domains)
 [![Latest](https://img.shields.io/github/v/release/Hexalith/Hexalith.Domains?include_prereleases&label=preview)](https://github.com/Hexalith/Hexalith.Domains/pkgs/nuget/Hexalith.Domains)
 
-## Overview
-
-
 ## Repository Structure
 
 The repository is organized as follows:
 
-- [src](./src/README.md) Is the source code directory of your project.
-- [src/libraries](./src/libraries/README.md) Is the source code directory where you will add your Nuget package projects.
-- [src/examples](./src/examples/README.md) Contains example implementations of your projects.
-- [test](./test/README.md) Contains test projects for your packages.
-- [Hexalith.Builds](./Hexalith.Builds/README.md) Contains shared build configurations and tools.
+- [src](./src/README.md): Source code directory.
+  - [src/libraries](./src/libraries/README.md): Core libraries and abstractions.
+  - [src/examples](./src/examples/README.md): Example implementations.
+- [test](./test/README.md): Unit and integration tests.
+- [Hexalith.Builds](./Hexalith.Builds/README.md): Shared build configurations.
 
 ## Getting Started
 
@@ -48,7 +45,11 @@ The repository is organized as follows:
 
 ### Git Submodules
 
-This template uses the Hexalith.Builds repository as a Git submodule. For information about the build system and configuration, refer to the README files in the Hexalith.Builds directory.
+This project uses the Hexalith.Builds repository as a Git submodule for build infrastructure. Ensure submodules are initialized:
+
+```bash
+git submodule update --init --recursive
+```
 
 ## License
 
