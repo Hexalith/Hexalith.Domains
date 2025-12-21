@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\libraries\Hexalith.Domains\Hexalith.Domains.csproj" />
+    <ProjectReference Include="..\..\src\libraries\Domain\Hexalith.Domains\Hexalith.Domains.csproj" />
   </ItemGroup>
 
   <ItemGroup>
