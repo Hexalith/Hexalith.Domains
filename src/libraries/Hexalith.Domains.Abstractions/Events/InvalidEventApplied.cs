@@ -55,21 +55,21 @@ using Hexalith.PolymorphicSerializations;
 /// the record can be safely shared between multiple threads.
 /// </para>
 /// </remarks>
-/// <param name="AggregateName">The name of the aggregate to which the invalid event was applied.</param>
-/// <param name="AggregateId">The unique identifier of the aggregate.</param>
+/// <param name="DomainName">The name of the aggregate to which the invalid event was applied.</param>
+/// <param name="DomainId">The unique identifier of the aggregate.</param>
 /// <param name="EventType">The type of the event that was invalid.</param>
 /// <param name="EventContent">The serialized JSON content of the invalid event. Uses System.Text.Json for serialization.</param>
 /// <param name="Reason">The reason why the event was considered invalid.</param>
 [PolymorphicSerialization] // Enables polymorphic serialization for handling different event types
-public partial record InvalidEventApplied(string AggregateName, string AggregateId, string EventType, string EventContent, string Reason)
+public partial record InvalidEventApplied(string DomainName, string DomainId, string EventType, string EventContent, string Reason)
 {
     /// <summary>
     /// Creates an InvalidEventApplied instance for an event that is not supported by the aggregate.
     /// This factory method handles the serialization of the event object and captures the necessary
     /// information about why the event application failed.
     /// </summary>
-    /// <param name="aggregateName">The name of the aggregate that doesn't support the event.</param>
-    /// <param name="aggregateId">The unique identifier of the aggregate.</param>
+    /// <param name="domainName">The name of the aggregate that doesn't support the event.</param>
+    /// <param name="domainId">The unique identifier of the aggregate.</param>
     /// <param name="event">The event object that is not supported.</param>
     /// <returns>A new instance of InvalidEventApplied containing details about the unsupported event.</returns>
     /// <remarks>
@@ -77,17 +77,17 @@ public partial record InvalidEventApplied(string AggregateName, string Aggregate
     /// know how to handle, or when an event cannot be applied due to business rules or
     /// current aggregate state.
     /// </remarks>
-    /// <exception cref="ArgumentNullException">Thrown when aggregateName, aggregateId, or event is null.</exception>
+    /// <exception cref="ArgumentNullException">Thrown when DomainName, DomainId, or event is null.</exception>
     /// <exception cref="JsonException">Thrown when the event object cannot be serialized to JSON.</exception>
-    public static InvalidEventApplied CreateNotSupportedAppliedEvent(string aggregateName, string aggregateId, object @event)
+    public static InvalidEventApplied CreateNotSupportedAppliedEvent(string domainName, string domainId, object @event)
     {
-        ArgumentNullException.ThrowIfNull(aggregateName);
-        ArgumentNullException.ThrowIfNull(aggregateId);
+        ArgumentNullException.ThrowIfNull(domainName);
+        ArgumentNullException.ThrowIfNull(domainId);
         ArgumentNullException.ThrowIfNull(@event);
 
         return new InvalidEventApplied(
-            aggregateName,
-            aggregateId,
+            domainName,
+            domainId,
             @event.GetType().FullName ?? "Unknown type.",
             JsonSerializer.Serialize(@event, @event.GetType()),
             "Event not supported.");

@@ -15,13 +15,13 @@ using Hexalith.PolymorphicSerializations;
 /// <summary>
 /// Represents a snapshot event in the domain, capturing the state of an aggregate at a specific point in time.
 /// </summary>
-/// <param name="AggregateName">The name of the aggregate.</param>
-/// <param name="AggregateId">The unique identifier of the aggregate.</param>
+/// <param name="DomainName">The name of the aggregate.</param>
+/// <param name="DomainId">The unique identifier of the aggregate.</param>
 /// <param name="Snapshot">A JSON serialized representation of the aggregate's state.</param>
 [PolymorphicSerialization]
 public partial record SnapshotEvent(
-    [property: DataMember(Order = 1)] string AggregateName,
-    [property: DataMember(Order = 2)] string AggregateId,
+    [property: DataMember(Order = 1)] string DomainName,
+    [property: DataMember(Order = 2)] string DomainId,
     [property: DataMember(Order = 3)] string Snapshot)
 {
     /// <summary>
